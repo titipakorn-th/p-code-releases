@@ -105,11 +105,13 @@ else
         ;;
     esac
 
-    filename="$APP-$triple.tar.gz"
-
-    if ! command -v tar >/dev/null 2>&1; then
-         echo -e "${RED}Error: 'tar' is required but not installed.${NC}"
-         exit 1
+    # Determine file extension based on OS
+    if [[ "$os" == "windows" ]]; then
+        filename="$APP-$triple.zip"
+        archive_type="zip"
+    else
+        filename="$APP-$triple.zip"
+        archive_type="zip"
     fi
 
     if [ -z "$requested_version" ]; then
@@ -264,7 +266,20 @@ download_and_install() {
         curl -# -L -o "$tmp_dir/$filename" "$url"
     fi
 
-    tar -xzf "$tmp_dir/$filename" -C "$tmp_dir"
+    # Extract based on file type
+    if [[ "$archive_type" == "zip" ]]; then
+        if ! command -v unzip >/dev/null 2>&1; then
+            echo -e "${RED}Error: 'unzip' is required but not installed.${NC}"
+            exit 1
+        fi
+        unzip -q "$tmp_dir/$filename" -d "$tmp_dir"
+    else
+        if ! command -v tar >/dev/null 2>&1; then
+            echo -e "${RED}Error: 'tar' is required but not installed.${NC}"
+            exit 1
+        fi
+        tar -xzf "$tmp_dir/$filename" -C "$tmp_dir"
+    fi
 
     mv "$tmp_dir/$APP" "$INSTALL_DIR"
     chmod 755 "${INSTALL_DIR}/$APP"

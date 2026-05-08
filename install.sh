@@ -281,7 +281,16 @@ download_and_install() {
         tar -xzf "$tmp_dir/$filename" -C "$tmp_dir"
     fi
 
-    mv "$tmp_dir/$APP" "$INSTALL_DIR"
+    # Locate the binary within the extracted files
+    binary_source=$(find "$tmp_dir" -type f -name "$APP" | head -n 1)
+    
+    if [ -z "$binary_source" ]; then
+        echo -e "${RED}Error: Binary '$APP' not found in the downloaded archive.${NC}"
+        rm -rf "$tmp_dir"
+        exit 1
+    fi
+
+    mv "$binary_source" "$INSTALL_DIR"
     chmod 755 "${INSTALL_DIR}/$APP"
     rm -rf "$tmp_dir"
 }

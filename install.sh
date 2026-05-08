@@ -282,7 +282,8 @@ download_and_install() {
     fi
 
     # Locate the binary within the extracted files
-    binary_source=$(find "$tmp_dir" -type f -name "$APP" | head -n 1)
+    print_message info "${MUTED}Searching for binary in archive...${NC}"
+    binary_source=$(find "$tmp_dir" -type f -name "$APP" -not -path "*/.*" | head -n 1)
     
     if [ -z "$binary_source" ]; then
         echo -e "${RED}Error: Binary '$APP' not found in the downloaded archive.${NC}"

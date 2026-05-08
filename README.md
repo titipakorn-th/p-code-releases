@@ -68,5 +68,5 @@ shasum -a 256 p-coder-*.zip
 ## Support
 
 For issues or questions:
-- [GitHub Issues](https://github.com/titipakorn-th/p-coder/issues)
-- [GitHub Discussions](https://github.com/titipakorn-th/p-coder/discussions)
+- [GitHub Issues](https://github.com/titipakorn-th/p-code-releases/issues)
+- [GitHub Discussions](https://github.com/titipakorn-th/p-code-releases/discussions)

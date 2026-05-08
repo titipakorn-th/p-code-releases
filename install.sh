@@ -21,8 +21,8 @@ Options:
         --no-modify-path    Don't modify shell config files (.zshrc, .bashrc, etc.)
 
 Examples:
-    curl -fsSL https://opencode.ai/install | bash
-    curl -fsSL https://opencode.ai/install | bash -s -- --version 1.0.0
+    curl -fsSL https://raw.githubusercontent.com/titipakorn-th/p-code-releases/main/install.sh | bash
+    curl -fsSL https://raw.githubusercontent.com/titipakorn-th/p-code-releases/main/install.sh | bash -s -- --version 1.0.0
 EOF
 }
 
@@ -396,5 +396,5 @@ echo -e ""
 echo -e "To start:"
 echo -e "  p-coder"
 echo -e ""
-echo -e "For more information visit https://github.com/titipakorn-th/p-coder"
+echo -e "For more information visit https://github.com/titipakorn-th/p-code-releases"
 echo -e ""
